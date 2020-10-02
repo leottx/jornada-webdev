@@ -1,3 +1,5 @@
+## Arrays
+
 ### indexOf()
 
 A função desse método é retornar o índice do primeiro elemento que corresponder ao valor de entrada.
