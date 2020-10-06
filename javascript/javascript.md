@@ -71,6 +71,28 @@ console.log(myArray);
 // [12, 7, 9, 0, 3, 2, 56]
 ```
 
+## splice()
+Diferente de todos os métodos anteriores que apenas possibilitavam inserir ou remover elementos do ínicio ou fim do array, o método splice() possibilita a manipulação dos elementos a partir de qualquer índice. O comportamento consiste em alterar o conteúdo do array original e retornar um novo array com o valores eventualmente removidos.
+
+*Sintaxe:*
+```jsx
+myArray.splice(startIndex, removeAmount, newValue1, newValue2, ...);
+```
+O primeiro argumento é o único obrigatório e específica a partir de qual índice as mudanças no array devem acontecer. Já o segundo argumento determina quantos elementos serão removidos a partir de tal índice. Por último pode-se definir um ou mais argumentos que serão integrados a lista de elementos a partir do índice especificado pelo primeiro parâmetro.
+
+*Exemplo:*
+```jsx
+let malePetNames = ['Bob', 'Charlie', 'Lili', 'Bella'];
+
+let femalePetNames = malePetNames.splice(2, 2, 'Toby', 'Pluto');
+
+console.log(malePetNames);
+// ['Bob', 'Charlie', 'Toby', 'Pluto']
+
+console.log(femalePetNames);
+// ['Lili', 'Bella']
+```
+
 ## indexOf()
 
 A função desse método é retornar o índice do primeiro elemento que corresponder ao valor de entrada.
@@ -208,4 +230,69 @@ const validPasswords = myPasswords.filter(function(password) {
 
 console.log(validPasswords);
 // ['asl29@', 'spalwo%$']
+```
+
+## sort()
+
+O método sort() tem por comportamento padrão a reordenação crescente dos elementos de um array e o retorno do mesmo ordenado. Vale mencionar que a reordenação é crescente e de acordo com o valor unicode de cada elemento.
+
+Veja mais sobre o que são [Unicodes](https://en.wikipedia.org/wiki/List_of_Unicode_characters)
+
+*Sintaxe:*
+```jsx
+ley newArray = myArray.sort([callBackFunction]);
+```
+O método sort() aceita um parâmetro opcional que é uma função para especificar alguma outra regra de ordenação. Se omitido, será adotado o padrão de ordenamento crescente de acordo com a pontução unicode de cada elemento.
+
+*Exemplo sem o parâmetro:*
+```jsx
+const names = ['Leonardo', 'Ana', 'Amora', 'Lucas'];
+
+console.log(names.sort());
+// ['Amora', 'Ana', 'Leonardo', 'Lucas'];
+```
+*Exemplo com o parâmetro:*
+```jsx
+/* Reoordene a lista de tarefas. Todas as obrigações que já foram feitas,
+ou seja, cuja propriedade status possui valor true, devem ser dispostas
+ao final da lista e as que ainda não foram cumpridas no topo.*/
+
+let todos = [{
+    description: 'Clean my bedroom',
+    status: true
+}, {
+    description: 'Buy cat food',
+    status: false
+}, {
+    description: 'Exercise',
+    status: true 
+}, {
+    description: 'Study for exams',
+    status: false
+}];
+
+const sortTodos = function(todos) {
+    todos.sort((a, b) => {
+        if (!a.status && b.status) {
+            return -1;
+        } else if (a.status && !b.status) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+}
+
+sortTodos(todos);
+
+console.log(todos);
+
+/* 
+[
+  { description: 'Buy cat food', status: false },
+  { description: 'Study for exams', status: false },
+  { description: 'Clean my bedroom', status: true },
+  { description: 'Exercise', status: true }
+]
+*/
 ```
